@@ -156,7 +156,10 @@ section.block{padding:120px 0}
 @media(max-width:860px){.artiste .wrap{grid-template-columns:minmax(0,1fr)}.artiste .imgcol{min-height:440px;order:-1}}
 
 /* book */
-.book{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px}
+.book{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-areas:"intro form" "contact form";grid-template-rows:auto 1fr;column-gap:60px;row-gap:10px}
+.book .intro{grid-area:intro}.book form{grid-area:form;align-self:start}.book .contactcol{grid-area:contact}
+.contact-label{color:var(--muted);margin-bottom:6px}
+#book{scroll-margin-top:70px}
 .book h2{font-family:var(--display);font-weight:400;font-size:clamp(3rem,7vw,5.6rem);line-height:.92;margin:14px 0 22px}
 .book .info p{color:var(--muted);margin-bottom:22px}
 .contact a{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:color .2s}
@@ -177,7 +180,7 @@ textarea{min-height:110px;resize:vertical}
 .done pre{white-space:pre-wrap;font:400 .85rem var(--mono);color:#cbbfb1;background:#120e0b;padding:14px;border-radius:10px;margin:12px 0}
 .done .acts{display:flex;gap:10px;flex-wrap:wrap}
 .err{color:#ff8a65;font-size:.85rem;grid-column:1/-1;display:none}
-@media(max-width:900px){.book{grid-template-columns:minmax(0,1fr)}form{grid-template-columns:minmax(0,1fr);padding:24px}}
+@media(max-width:900px){.book{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "form" "contact";grid-template-rows:auto;row-gap:28px}#book{padding-top:40px}.book h2{font-size:3.2rem;margin:10px 0 12px}.book .info p{margin-bottom:0}.contact-label{margin-top:12px}form{grid-template-columns:minmax(0,1fr);padding:24px}}
 
 footer{border-top:1px solid var(--line);padding:60px 0 40px}
 .bigname{font-family:var(--display);font-size:clamp(4rem,19vw,17rem);line-height:.8;letter-spacing:.01em;color:#1d1712;user-select:none;margin-bottom:34px}
@@ -345,18 +348,10 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px}
 </div></section>
 
 <section class="block" id="book"><div class="wrap book">
-  <div class="info reveal">
+  <div class="info intro reveal">
     <div class="mono kicker">Bookings</div>
     <h2>Let's make<br>the record.</h2>
     <p>Tell me about your project and I'll get back to you with my availability and a quote.</p>
-    <div class="contact">
-      <a href="mailto:hello@osadebey.com"><span>Email</span><span>hello@osadebey.com</span></a>
-      <a href="https://www.instagram.com/n_uell/" target="_blank" rel="noopener"><span>Management</span><span>@n_uell ↗</span></a>
-      <a href="https://www.instagram.com/osadebey_/" target="_blank" rel="noopener"><span>Instagram</span><span>@osadebey_ ↗</span></a>
-      <a href="https://www.youtube.com/@only1Osadebey" target="_blank" rel="noopener"><span>YouTube</span><span>@only1Osadebey ↗</span></a>
-      <a href="https://open.spotify.com/artist/2wGTUsd53tt4zLvK5dU8YB" target="_blank" rel="noopener"><span>Spotify</span><span>Osadebey ↗</span></a>
-      <a href="https://music.apple.com/ng/artist/osadebey/1457088654" target="_blank" rel="noopener"><span>Apple Music</span><span>Osadebey ↗</span></a>
-    </div>
   </div>
 
   <form id="form" class="reveal" novalidate>
@@ -382,6 +377,18 @@ footer{border-top:1px solid var(--line);padding:60px 0 40px}
       </div>
     </div>
   </form>
+
+  <div class="info contactcol reveal">
+    <div class="mono contact-label">Or reach me directly</div>
+    <div class="contact">
+      <a href="mailto:hello@osadebey.com"><span>Email</span><span>hello@osadebey.com</span></a>
+      <a href="https://www.instagram.com/n_uell/" target="_blank" rel="noopener"><span>Management</span><span>@n_uell ↗</span></a>
+      <a href="https://www.instagram.com/osadebey_/" target="_blank" rel="noopener"><span>Instagram</span><span>@osadebey_ ↗</span></a>
+      <a href="https://www.youtube.com/@only1Osadebey" target="_blank" rel="noopener"><span>YouTube</span><span>@only1Osadebey ↗</span></a>
+      <a href="https://open.spotify.com/artist/2wGTUsd53tt4zLvK5dU8YB" target="_blank" rel="noopener"><span>Spotify</span><span>Osadebey ↗</span></a>
+      <a href="https://music.apple.com/ng/artist/osadebey/1457088654" target="_blank" rel="noopener"><span>Apple Music</span><span>Osadebey ↗</span></a>
+    </div>
+  </div>
 </div></section>
 
 <footer><div class="wrap">
