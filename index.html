@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osadebey — Producer · Mix Engineer · Artiste</title>
+<meta name="description" content="Osadebey: Lagos-based music producer, mixing & mastering engineer and artiste with 120+ credits. Book a session.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0a09; --bg2:#15110e; --line:#2a221c;
+  --rust:#d2561e; --amber:#e8893a; --cream:#f1e8da; --muted:#9a8d80;
+  --display:'Anton',Impact,sans-serif; --body:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--cream);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+.kicker{color:var(--rust)}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px 0;transition:background .3s,padding .3s}
+nav.solid{background:rgba(12,10,9,.88);backdrop-filter:blur(10px);padding:12px 0;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;text-decoration:none}
+.logo span{color:var(--rust)}
+.links{display:flex;gap:28px;align-items:center}
+.links a{text-decoration:none;font-size:.9rem;color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--cream)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#120c08;border:0;border-radius:999px;padding:12px 22px;font:700 .9rem var(--body);text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:var(--amber);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid #4a3d33}
+.btn.ghost:hover{border-color:var(--cream);background:transparent}
+.links .btn{color:#120c08;padding:9px 18px}
+@media(max-width:820px){.links a:not(.btn){display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:end;gap:0;padding-top:90px}
+.hero-text{padding:0 0 9vh 4vw;position:relative;z-index:2}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(4.4rem,13vw,11.5rem);line-height:.86;letter-spacing:.01em;margin:18px 0 26px;margin-right:-22vw}
+.hero h1 em{font-style:normal;color:var(--rust)}
+.hero p.lead{max-width:470px;color:#d4c8ba;font-size:1.08rem}
+.hero .ctas{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.hero-img{position:relative;height:100%;min-height:78svh}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(12,10,9,.35) 28%,transparent 55%),linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+@media(max-width:820px){
+  .hero{grid-template-columns:minmax(0,1fr);align-items:end}
+  .hero-img{position:absolute;inset:0;min-height:0}
+  .hero-img::after{background:linear-gradient(0deg,var(--bg) 18%,rgba(12,10,9,.55) 55%,rgba(12,10,9,.2) 100%)}
+  .hero-text{padding:0 5vw 8vh}
+  .hero h1{margin-right:0;font-size:clamp(3.6rem,19vw,7rem)}
+}
+
+/* split meter */
+.split{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.split .wrap{padding:44px 0}
+.bar{display:flex;height:10px;border-radius:99px;overflow:hidden;margin:18px 0 22px;background:#211a15}
+.bar i{display:block;height:100%;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.legend div b{font-family:var(--display);font-weight:400;font-size:2.6rem;line-height:1;display:block}
+.legend div span{color:var(--muted);font-size:.9rem}
+.legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle}
+@media(max-width:700px){.legend{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section.block{padding:120px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.head>div{min-width:0}.head h2{overflow-wrap:anywhere;font-family:var(--display);font-weight:400;font-size:clamp(2.8rem,6vw,4.8rem);line-height:.95;letter-spacing:.01em}
+.head p{max-width:420px;color:var(--muted)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.stats div{padding:34px 28px;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats b{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:var(--cream);display:block}
+.stats span{color:var(--muted);font-size:.9rem}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(2){border-right:0}.stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* featured */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;border-radius:16px;padding:26px;min-height:270px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border:1px solid var(--line);background:var(--bg2);transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:#4a3d33}
+.card .art{position:absolute;inset:0;opacity:.9;z-index:0}
+.card>*{position:relative;z-index:1}
+.card h3{font-family:var(--display);font-weight:400;font-size:2.1rem;line-height:1;margin:6px 0 6px}
+.card .who{color:#e6dccd}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:99px;background:rgba(0,0,0,.35);border:1px solid rgba(241,232,218,.18)}
+.card .yr{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.card.cover{min-height:360px}
+.card .cv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:0}
+.card.cover::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(12,10,9,.92) 0%,rgba(12,10,9,.6) 45%,rgba(12,10,9,.1) 100%)}
+.card.cover>*:not(.cv){z-index:2}
+.card .note{max-width:380px;color:#d4c8ba;font-size:.92rem;margin-top:12px;font-style:italic}
+.card.wide{grid-column:span 2}
+@media(max-width:900px){.feat{grid-template-columns:1fr 1fr}.card.wide{grid-column:span 2}}
+@media(max-width:600px){.feat{grid-template-columns:1fr}.card.wide{grid-column:auto}}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.svc div{background:var(--bg);padding:34px 30px;transition:background .3s}
+.svc div:hover{background:var(--bg2)}
+.svc .n{font-family:var(--mono);font-size:.72rem;color:var(--rust)}
+.svc h3{font-family:var(--display);font-weight:400;font-size:1.9rem;margin:14px 0 10px;letter-spacing:.01em}
+.svc p{color:var(--muted);font-size:.95rem}
+@media(max-width:900px){.svc{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.svc{grid-template-columns:1fr}}
+
+/* credits */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{font:600 .82rem var(--body);color:var(--muted);background:transparent;border:1px solid var(--line);padding:9px 16px;border-radius:99px;cursor:pointer;transition:all .2s}
+.filters button.on,.filters button:hover{color:#120c08;background:var(--cream);border-color:var(--cream)}
+.filters button .c{font-family:var(--mono);font-size:.7rem;opacity:.65;margin-left:4px}
+.credits{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:56px 1.3fr 1.4fr 1.5fr 60px;gap:16px;align-items:center;padding:16px 4px;border-bottom:1px solid var(--line);transition:background .2s}
+.row:hover{background:var(--bg2)}
+.row .i{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.row .t{font-weight:700}
+.row .a{color:#cbbfb1;font-size:.95rem}
+.row .r{display:flex;gap:5px;flex-wrap:wrap}
+.row .r span{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid #3d2f25;padding:3px 7px;border-radius:5px}
+.row .y{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-align:right}
+@media(max-width:760px){.row{grid-template-columns:1fr auto;gap:4px 12px}.row .i{display:none}.row .a{grid-column:1}.row .r{grid-column:1/-1;margin-top:6px}.row .y{grid-row:1;grid-column:2}}
+.more{margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.92rem}
+
+/* about */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.about .ph{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5}
+.about .ph img{width:100%;height:100%;object-fit:cover}
+.about .ph .badge{position:absolute;left:18px;bottom:18px;background:rgba(12,10,9,.75);backdrop-filter:blur(6px);padding:10px 14px;border-radius:10px}
+.about h2{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,5vw,4.2rem);line-height:.98;margin:14px 0 24px}
+.about p{color:#d4c8ba;margin-bottom:16px;font-size:1.05rem}
+.about .sig{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+@media(max-width:860px){.about{grid-template-columns:minmax(0,1fr);gap:40px}}
+
+/* artiste */
+.artiste{position:relative;overflow:hidden;background:linear-gradient(135deg,#1b120c,#0c0a09 60%)}
+.artiste .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.artiste .imgcol{position:relative;align-self:stretch;min-height:520px}
+.artiste .imgcol img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:20px}
+.player{margin-top:30px;border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;align-items:center;gap:18px;background:rgba(0,0,0,.3);text-decoration:none;transition:border-color .2s}
+.player:hover{border-color:var(--rust)}
+.play{width:54px;height:54px;flex:none;border-radius:50%;background:var(--rust);display:grid;place-items:center}
+.play svg{margin-left:3px}
+.wave{display:flex;min-width:0;overflow:hidden;gap:3px;align-items:center;height:34px;flex:1}
+.wave i{display:block;width:3px;border-radius:3px;background:#5a4636}
+.player:hover .wave i{background:var(--amber)}
+@media(max-width:860px){.artiste .wrap{grid-template-columns:minmax(0,1fr)}.artiste .imgcol{min-height:440px;order:-1}}
+
+/* book */
+.book{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px}
+.book h2{font-family:var(--display);font-weight:400;font-size:clamp(3rem,7vw,5.6rem);line-height:.92;margin:14px 0 22px}
+.book .info p{color:var(--muted);margin-bottom:22px}
+.contact a{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:color .2s}
+.contact a:hover{color:var(--amber)}
+.contact a span:last-child{color:var(--muted);font-family:var(--mono);font-size:.78rem}
+form{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+form .full{grid-column:1/-1}
+label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid #3a2f27;color:var(--cream);border-radius:10px;padding:13px 14px;font:400 .95rem var(--body);outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--rust)}
+textarea{min-height:110px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{display:none}
+.chips label{margin:0;cursor:pointer;font:600 .85rem var(--body);letter-spacing:0;text-transform:none;color:var(--cream);border:1px solid #3a2f27;padding:9px 14px;border-radius:99px;transition:all .2s}
+.chips input:checked+label{background:var(--rust);color:#120c08;border-color:var(--rust)}
+.done{display:none;grid-column:1/-1;background:var(--bg);border:1px solid var(--rust);border-radius:14px;padding:22px}
+.done h4{font-family:var(--display);font-weight:400;font-size:1.6rem;margin-bottom:8px}
+.done pre{white-space:pre-wrap;font:400 .85rem var(--mono);color:#cbbfb1;background:#120e0b;padding:14px;border-radius:10px;margin:12px 0}
+.done .acts{display:flex;gap:10px;flex-wrap:wrap}
+.err{color:#ff8a65;font-size:.85rem;grid-column:1/-1;display:none}
+@media(max-width:900px){.book{grid-template-columns:minmax(0,1fr)}form{grid-template-columns:minmax(0,1fr);padding:24px}}
+
+footer{border-top:1px solid var(--line);padding:60px 0 40px}
+.bigname{font-family:var(--display);font-size:clamp(4rem,19vw,17rem);line-height:.8;letter-spacing:.01em;color:#1d1712;user-select:none;margin-bottom:34px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:.88rem}
+.foot nav{position:static;padding:0;display:flex;gap:22px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--cream)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a href="#top" class="logo">OSADEBEY<span>.</span></a>
+  <div class="links">
+    <a href="#work">Work</a><a href="#services">Services</a><a href="#credits">Credits</a><a href="#artiste">Artiste</a>
+    <a href="#book" class="btn">Book a session</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="hero-text">
+    <div class="mono kicker">Producer · Mix &amp; Master Engineer · Artiste — Lagos</div>
+    <h1>OSADE<em>BEY</em></h1>
+    <p class="lead">I've worked on 120+ records across worship, gospel and Afro sounds. I produce them, mix them, master them, and sometimes I sing on them too.</p>
+    <div class="ctas">
+      <a href="#book" class="btn">Book a session →</a>
+      <a href="#credits" class="btn ghost">See the credits</a>
+    </div>
+  </div>
+  <div class="hero-img"><img src="img/hero.jpg" alt="Osadebey smiling in sunglasses against a wood-panelled studio wall"></div>
+</header>
+
+<div class="split"><div class="wrap">
+  <div class="mono" style="color:var(--muted)">How I spend my time</div>
+  <div class="bar" id="bar">
+    <i data-w="34" style="background:var(--rust)"></i>
+    <i data-w="35" style="background:var(--amber)"></i>
+    <i data-w="30" style="background:var(--cream)"></i>
+    <i data-w="1" style="background:#6b5d50"></i>
+  </div>
+  <div class="legend">
+    <div><b>34%</b><span><i class="dot" style="background:var(--rust)"></i>Music producer</span></div>
+    <div><b>35%</b><span><i class="dot" style="background:var(--amber)"></i>Mixing &amp; mastering engineer</span></div>
+    <div><b>30%</b><span><i class="dot" style="background:var(--cream)"></i>Artiste</span></div>
+    <div><b>1%</b><span><i class="dot" style="background:#6b5d50"></i>Miscellaneous</span></div>
+  </div>
+</div></div>
+
+<section class="block" id="work"><div class="wrap">
+  <div class="stats reveal">
+    <div><b data-count="122">0</b><span>Credited tracks</span></div>
+    <div><b data-count="187">0</b><span>Collaborators</span></div>
+    <div><b data-count="88">0</b><span>Records mastered</span></div>
+    <div><b data-count="83">0</b><span>Records produced</span></div>
+  </div>
+
+  <div class="head reveal" style="margin-top:110px">
+    <div><div class="mono kicker">Selected work</div><h2>Records I've<br>put my hands on</h2></div>
+    <p>From worship anthems to the street, and a fashion runway too. A few favourites from my catalogue.</p>
+  </div>
+
+  <div class="feat">
+    <article class="card wide cover reveal">
+      <img class="cv" src="img/i-speak-lion.jpg" alt="I Speak Lion album cover by TY Bello">
+      <div class="tags"><span class="tag">Co-produced</span><span class="tag">Tracks 1, 2 &amp; 15</span></div>
+      <div><div class="yr">2026 · Album</div><h3>I Speak Lion</h3><div class="who">TY Bello</div>
+      <p class="note">"It was a privilege to be in the room and to be part of the village that made this masterpiece."</p></div>
+    </article>
+    <article class="card reveal">
+      <div class="art" style="background:radial-gradient(circle at 85% 20%,rgba(210,86,30,.55),transparent 55%),linear-gradient(135deg,#2a160c,#120c08)"></div>
+      <div class="tags"><span class="tag">Produced</span><span class="tag">Mixed</span><span class="tag">Mastered</span></div>
+      <div><div class="yr">2026</div><h3>Sweet Sensation</h3><div class="who">Naffymar</div></div>
+    </article>
+    <article class="card reveal">
+      <div class="art" style="background:radial-gradient(circle at 20% 80%,rgba(232,137,58,.4),transparent 60%),#16110d"></div>
+      <div class="tags"><span class="tag">Produced</span><span class="tag">Composed</span><span class="tag">Lyrics</span></div>
+      <div><div class="yr">2025</div><h3>Early Momo</h3><div class="who">Spy Shitta</div></div>
+    </article>
+    <article class="card reveal">
+      <div class="art" style="background:linear-gradient(160deg,#3a2414,#0f0b08 70%)"></div>
+      <div class="tags"><span class="tag">Mixed</span><span class="tag">Mastered</span></div>
+      <div><div class="yr">2022</div><h3>You Are Good</h3><div class="who">Naffymar, CalledOut Music</div></div>
+    </article>
+    <article class="card reveal">
+      <div class="art" style="background:radial-gradient(circle at 70% 30%,rgba(241,232,218,.16),transparent 55%),#14100c"></div>
+      <div class="tags"><span class="tag">Produced</span></div>
+      <div><div class="yr">2026</div><h3>Gbewa</h3><div class="who">ANIIKE</div></div>
+    </article>
+    <article class="card reveal">
+      <div class="art" style="background:radial-gradient(circle at 30% 20%,rgba(210,86,30,.45),transparent 60%),#120d0a"></div>
+      <div class="tags"><span class="tag">Produced</span><span class="tag">Composed</span><span class="tag">BGVs</span></div>
+      <div><div class="yr">2024</div><h3>Hiding Place</h3><div class="who">Naffymar, Noël Mio, Pawasonic</div></div>
+    </article>
+    <article class="card wide reveal">
+      <div class="art" style="background:repeating-linear-gradient(90deg,rgba(210,86,30,.13) 0 2px,transparent 2px 14px),linear-gradient(135deg,#1e130c,#0c0a09)"></div>
+      <div class="tags"><span class="tag">Sound design</span><span class="tag">Live</span></div>
+      <div><div class="yr">Runway</div><h3>House of Marvee — GTCO Fashion Weekend</h3><div class="who">Runway sound design</div></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="block" id="services" style="padding-top:0"><div class="wrap">
+  <div class="head reveal">
+    <div><div class="mono kicker">Services</div><h2>What you can<br>book me for</h2></div>
+    <p>Every project is different, so there's no rate card. Tell me what you're working on and I'll come back with a quote.</p>
+  </div>
+  <div class="svc reveal">
+    <div><span class="n">01</span><h3>Production</h3><p>From the first idea to a finished record. Beats, arrangement, live instruments and the sound that makes it yours.</p></div>
+    <div><span class="n">02</span><h3>Mixing</h3><p>Balance, depth and punch. Your stems come back sounding like a record, not a demo.</p></div>
+    <div><span class="n">03</span><h3>Mastering</h3><p>Loud, clean and ready for streaming platforms, radio and the church sound system.</p></div>
+    <div><span class="n">04</span><h3>Vocal production</h3><p>Vocal direction, comping, tuning and stacked background vocals. I've sung BGVs on 40+ records.</p></div>
+    <div><span class="n">05</span><h3>Sound design</h3><p>Original soundscapes for runway shows, brand films, events and content.</p></div>
+    <div><span class="n">06</span><h3>Features</h3><p>Need a voice, a writer or a co-producer on your song? Book me as an artiste.</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="credits" style="padding-top:0"><div class="wrap">
+  <div class="head reveal">
+    <div><div class="mono kicker">Discography</div><h2>Credits</h2></div>
+    <p>A selection of my 122+ credits. Filter by what I did on each record.</p>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="credits" id="list"></div>
+  <div class="more">
+    <span>Showing a selection. My full catalogue is verified on Muso.ai.</span>
+    <a class="btn ghost" href="https://muso.ai/profile/48f23358-360a-4f4e-b329-3301650536f3/credits" target="_blank" rel="noopener">All 122 credits ↗</a>
+  </div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap about">
+  <div class="ph reveal"><img src="img/portrait.jpg" alt="Portrait of Osadebey in a cream knit sweater"><div class="badge mono">Lagos, Nigeria</div></div>
+  <div class="reveal">
+    <div class="mono kicker">About</div>
+    <h2>One person,<br>the whole record.</h2>
+    <p>I'm Osadebey, a Lagos-based music producer, mixing and mastering engineer and recording artiste. Over the last few years I've built a catalogue of 120+ credits with 187 collaborators. That includes co-producing on TY Bello's <em>I Speak Lion</em> and working with Naffymar, Oba Reengy, Spirit of Prophecy, TBabz, Pawasonic and CalledOut Music.</p>
+    <p>My home is worship and gospel, but my ear travels: Afro-pop, street records, acoustic sessions, even runway sound design. Because I produce, engineer and perform, I hear a song the way the artist does and the way the listener will.</p>
+    <div class="sig">
+      <span class="tag">Worship &amp; gospel</span><span class="tag">Afro-pop</span><span class="tag">Acoustic</span><span class="tag">Sound design</span><span class="tag">Drums</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="block artiste" id="artiste"><div class="wrap">
+  <div class="reveal">
+    <div class="mono kicker">The other 30%</div>
+    <div class="head" style="margin:14px 0 0"><h2>Me,<br>the artiste</h2></div>
+    <p style="color:#d4c8ba;max-width:470px;margin-top:22px">When I'm not behind the console, I'm in front of the mic: writing, singing, leading worship and playing drums. "Yahweh Sabaoth" with Oba Reengy is one I wrote, produced, mixed, mastered and sang on.</p>
+    <a class="player" href="https://youtu.be/TZbdE134UhE" target="_blank" rel="noopener">
+      <span class="play"><svg width="18" height="20" viewBox="0 0 18 20"><path d="M0 0l18 10L0 20z" fill="#120c08"/></svg></span>
+      <span style="min-width:0"><span class="mono" style="color:var(--muted);font-size:.64rem">Watch on YouTube</span><br><b>Latest from me</b></span>
+      <span class="wave" id="wave"></span>
+    </a>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+      <a class="btn ghost" href="https://www.youtube.com/@only1Osadebey" target="_blank" rel="noopener">YouTube channel ↗</a>
+      <a class="btn ghost" href="https://www.instagram.com/osadebey_/" target="_blank" rel="noopener">Instagram ↗</a>
+    </div>
+  </div>
+  <div class="imgcol reveal"><img src="img/artiste.jpg" alt="Osadebey in an all-black outfit leaning against a curved studio wall"></div>
+</div></section>
+
+<section class="block" id="book"><div class="wrap book">
+  <div class="info reveal">
+    <div class="mono kicker">Bookings</div>
+    <h2>Let's make<br>the record.</h2>
+    <p>Tell me about your project and I'll get back to you with my availability and a quote.</p>
+    <div class="contact">
+      <a href="https://wa.me/2349063827130" target="_blank" rel="noopener"><span>WhatsApp</span><span>+234 906 382 7130 ↗</span></a>
+      <a href="https://www.instagram.com/n_uell/" target="_blank" rel="noopener"><span>Management</span><span>@n_uell ↗</span></a>
+      <a href="https://www.instagram.com/osadebey_/" target="_blank" rel="noopener"><span>Instagram</span><span>@osadebey_ ↗</span></a>
+      <a href="https://www.youtube.com/@only1Osadebey" target="_blank" rel="noopener"><span>YouTube</span><span>@only1Osadebey ↗</span></a>
+    </div>
+  </div>
+
+  <form id="form" class="reveal" novalidate>
+    <div class="full">
+      <label>What do you need?</label>
+      <div class="chips" id="svcs"></div>
+    </div>
+    <div><label for="name">Your name / artist name</label><input id="name" required placeholder="e.g. Tolu"></div>
+    <div><label for="contact">WhatsApp or email</label><input id="contact" required placeholder="+234… or you@mail.com"></div>
+    <div><label for="tracks">Number of tracks</label><select id="tracks"><option>1 single</option><option>2–3 tracks</option><option>EP (4–7)</option><option>Album (8+)</option><option>Not sure yet</option></select></div>
+    <div><label for="when">Timeline</label><select id="when"><option>Flexible</option><option>Within 2 weeks</option><option>Within a month</option><option>1–3 months</option></select></div>
+    <div class="full"><label for="ref">Reference / demo link (optional)</label><input id="ref" placeholder="Song you love, or your demo on Drive, SoundCloud…"></div>
+    <div class="full"><label for="msg">Tell me about the project</label><textarea id="msg" placeholder="Genre, vibe, release plans, anything I should know"></textarea></div>
+    <div class="err" id="err">Please pick a service and add your name and contact.</div>
+    <div class="full"><button class="btn" type="submit" style="width:100%;justify-content:center;padding:16px">Send booking request →</button></div>
+    <div class="done" id="done">
+      <h4>Almost there.</h4>
+      <p style="color:var(--muted);font-size:.92rem" id="doneTxt">Your request is ready. Send it straight to me:</p>
+      <pre id="out"></pre>
+      <div class="acts">
+        <a class="btn" id="sendLink" href="#" target="_blank" rel="noopener">Send →</a>
+        <button class="btn ghost" type="button" id="copy">Copy message</button>
+      </div>
+    </div>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="bigname">OSADEBEY</div>
+  <div class="foot">
+    <span>© <span id="yr"></span> Osadebey. Producer · Mix Engineer · Artiste.</span>
+    <nav>
+      <a href="https://www.instagram.com/osadebey_/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@only1Osadebey" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://muso.ai/profile/48f23358-360a-4f4e-b329-3301650536f3" target="_blank" rel="noopener">Muso.ai</a>
+    </nav>
+  </div>
+</div></footer>
+
+<script>
+/* ===== CONFIG: add his WhatsApp number (international format, digits only) to route bookings to WhatsApp ===== */
+const WHATSAPP = "2349063827130";
+const BOOKING_EMAIL = "";       // e.g. "bookings@osadebey.com"
+const MGMT_IG = "n_uell";
+
+/* credits — source: Muso.ai */
+const P="Produced",MX="Mixed",MS="Mastered",C="Composed",E="Engineered",BV="BGVs",L="Lyrics",A="Artiste";
+const credits=[
+["When You Show Yourself","TY Bello, Sunmisola Agbebi",["Co-produced"],2026],
+["We Take It","TY Bello",["Co-produced"],2026],
+["Sweet Sensation","Naffymar",[P,MX,MS],2026],
+["Gbewa","ANIIKE",[P],2026],
+["Early Momo","Spy Shitta",[C,L,P],2025],
+["Double Double","Oba Reengy, Protek Illasheva, Greatman Takit",[MX,MS],2025],
+["Your Love","Spirit of Prophecy",[P,E],2025],
+["Be Thou Removed","Naffymar",[C,P],2025],
+["Yahweh Sabaoth","Oba Reengy, Osadebey",[A,P,MX,MS,BV],2024],
+["Hiding Place","Naffymar, Noël Mio, Pawasonic",[C,P,MX,MS,BV],2024],
+["Ikem","Spirit of Prophecy",[P,MX,MS,BV],2024],
+["Mayo","Naffymar, Pawasonic",[C,P,MX,MS],2024],
+["Nothing","Prince Davids, Naffymar, Pawasonic",[MX,MS],2024],
+["Bank on You","Naffymar, TBabz, Pawasonic",[MX,MS],2024],
+["God Is Love","Oba Reengy, K3ndrick",[MX],2024],
+["Show Up","Oba Reengy, A Tribe Apart",[MX,MS],2024],
+["Grateful (I Am Standing)","Oba Reengy, Tobi Toun",[E,MX,MS],2024],
+["This is Swagz.i","Swagz.i",[MX,MS],2024],
+["Stuck To You","TBabz, Naffymar, Hills Music",[MX,MS],2023],
+["Power (Acoustic)","Naffymar",[C],2023],
+["Not That Deep","Naffymar",[MX,MS],2023],
+["Company","Söulaar",[P],2023],
+["Power","Naffymar, Marizu",[MS],2022],
+["You Are Good","Naffymar, CalledOut Music",[MX,MS],2022],
+["You're The One","Kingdmusic, Noël Mio",[MX,MS],2022],
+["Adore Him (Acoustic)","Naffymar",[C,P,MX,MS,BV],2022],
+["Right Here","TKE3, Glochi",[MX,MS],2022],
+["Call On You","TBabz, Naffymar, Still Blessed Music",[MX],2021],
+["Already Won","Sam Jamz, Marizu",[MX,MS],2021],
+["Walk With Me","Naffymar, Aude-Carla",[P,MX,MS],2020],
+["Enough","Naffymar, Asha Elia, Se Ok",[MX,MS],2020],
+["Adore Him","Naffymar",[C,P,MX,MS,BV],2020]
+];
+const filters=["All",P,"Co-produced",MX,MS,C,BV];
+let active="All";
+const fEl=document.getElementById("filters"),lEl=document.getElementById("list");
+function renderFilters(){
+  fEl.innerHTML=filters.map(f=>{
+    const n=f==="All"?credits.length:credits.filter(c=>c[2].includes(f)).length;
+    return `<button class="${f===active?'on':''}" data-f="${f}">${f}<span class="c">${n}</span></button>`;
+  }).join("");
+}
+function renderList(){
+  const rows=credits.filter(c=>active==="All"||c[2].includes(active));
+  lEl.innerHTML=rows.map((c,i)=>`<div class="row"><span class="i">${String(i+1).padStart(2,"0")}</span><span class="t">${c[0]}</span><span class="a">${c[1]}</span><span class="r">${c[2].map(r=>`<span>${r}</span>`).join("")}</span><span class="y">${c[3]}</span></div>`).join("");
+}
+fEl.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;active=b.dataset.f;renderFilters();renderList();});
+renderFilters();renderList();
+
+/* booking chips */
+const svcs=["Production","Mixing","Mastering","Mix + Master","Vocal production","Sound design","Feature / Artiste"];
+document.getElementById("svcs").innerHTML=svcs.map((s,i)=>`<input type="checkbox" id="s${i}" value="${s}"><label for="s${i}">${s}</label>`).join("");
+
+/* booking submit */
+const form=document.getElementById("form");
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const picked=[...form.querySelectorAll("#svcs input:checked")].map(i=>i.value);
+  const v=id=>document.getElementById(id).value.trim();
+  if(!picked.length||!v("name")||!v("contact")){document.getElementById("err").style.display="block";return;}
+  document.getElementById("err").style.display="none";
+  const text=`Hi Osadebey 👋 Booking request from your website\n\nName: ${v("name")}\nContact: ${v("contact")}\nNeed: ${picked.join(", ")}\nTracks: ${v("tracks")}\nTimeline: ${v("when")}${v("ref")?`\nReference: ${v("ref")}`:""}${v("msg")?`\n\nAbout the project:\n${v("msg")}`:""}`;
+  document.getElementById("out").textContent=text;
+  const link=document.getElementById("sendLink");
+  if(WHATSAPP){link.href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;link.textContent="Send on WhatsApp →";}
+  else if(BOOKING_EMAIL){link.href=`mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent("Booking request: "+v("name"))}&body=${encodeURIComponent(text)}`;link.textContent="Send by email →";document.getElementById("doneTxt").textContent=`Your request is ready. Send it to ${BOOKING_EMAIL}:`;}
+  else{link.href=`https://ig.me/m/${MGMT_IG}`;link.textContent="DM management on Instagram →";document.getElementById("doneTxt").textContent="Your request is ready. Copy it, then send it to my management on Instagram (@"+MGMT_IG+"):";}
+  const d=document.getElementById("done");d.style.display="block";d.scrollIntoView({behavior:"smooth",block:"center"});
+});
+document.getElementById("copy").addEventListener("click",async e=>{
+  try{await navigator.clipboard.writeText(document.getElementById("out").textContent);e.target.textContent="Copied ✓";}
+  catch{e.target.textContent="Select the text above to copy";}
+});
+
+/* waveform */
+const w=document.getElementById("wave");
+w.innerHTML=Array.from({length:46},(_,i)=>`<i style="height:${Math.round(18+Math.abs(Math.sin(i*.55)*60+Math.sin(i*1.7)*22))}%"></i>`).join("");
+
+/* nav, reveal, counters, bar */
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>40),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(en=>{
+  if(!en.isIntersecting)return;
+  en.target.classList.add("in");
+  en.target.querySelectorAll("[data-count]").forEach(el=>{
+    const end=+el.dataset.count,t0=performance.now();
+    const tick=t=>{const p=Math.min(1,(t-t0)/1400);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick);};
+    requestAnimationFrame(tick);
+  });
+  io.unobserve(en.target);
+}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll("#bar i").forEach(i=>i.style.width=i.dataset.w+"%"),300);
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
